@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import osmnx as ox
 import os
 import re
+import matplotlib
 
 # Create your views here.
 
@@ -28,6 +29,9 @@ def generate_map(city_name):
     """
     Given a geocoded city name, generate a map of the roads within the city boundaries
     """
+    # Use the 'Agg' backend for non-interactive plot generation
+    matplotlib.use('Agg')
+
     graph = ox.graph_from_place(city_name, network_type='all', simplify=True)
 
     #Plot the street network
