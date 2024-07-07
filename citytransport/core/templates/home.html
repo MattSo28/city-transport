@@ -84,6 +84,13 @@
             <input type="text" name="city_name" class="city-input" placeholder="Enter city name">
             <button type="submit" class="submit-btn">Find City</button>
         </form>
+        {% if form.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.errors.values %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
         <div class="inspiration">
             Inspired by <a href="https://github.com/anvaka/city-roads?tab=readme-ov-file" target="_blank">anvaka's city roads</a>
         </div>
