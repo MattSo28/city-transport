@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+import core
+import maps
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', core.site.urls, name='home'),
+    path('maps/',maps.site.urls,name='maps')
 ]
