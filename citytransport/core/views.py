@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from maps.views import get_geocode_city_name, generate_map
+from maps.views import get_geocode_city_name, view_map
 from .forms import CityForm
 
 # Create your views here.
@@ -18,7 +18,7 @@ def home(request):
             try:
                 geocoded_city_name = get_geocode_city_name(input_city_text)
                 if not geocoded_city_name.empty:
-                    return redirect()
+                    return redirect('view_map', geocoded_city_name = geocoded_city_name)
 
             except Exception as e:
                 print(f"Geocoding error: {e}")
