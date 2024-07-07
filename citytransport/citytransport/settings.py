@@ -71,8 +71,9 @@ TEMPLATES = [
 ]
 
 TEMPLATE_DIRS = [
-    os.path.join(BASE_DIR, 'city-transport', 'citytransport', 'maps', 'templates'),
-    # other template directories if any
+    os.path.join(BASE_DIR, 'citytransport', 'core', 'templates'),
+    os.path.join(BASE_DIR, 'citytransport', 'templates'),
+    os.path.join(BASE_DIR, 'citytransport', 'maps', 'templates'),
 ]
 
 WSGI_APPLICATION = 'citytransport.wsgi.application'
