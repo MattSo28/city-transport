@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,6 +68,11 @@ TEMPLATES = [
             ],
         },
     },
+]
+
+TEMPLATE_DIRS = [
+    os.path.join(BASE_DIR, 'city-transport', 'citytransport', 'maps', 'templates'),
+    # other template directories if any
 ]
 
 WSGI_APPLICATION = 'citytransport.wsgi.application'
