@@ -53,6 +53,9 @@ def generate_map(city_name):
     # Save the plot as an SVG file
     fig.savefig(svg_file_path, format='svg')
 
-    return render('mapview.html', {'city_name': city_name})
+    return svg_file_path
 
-
+def view_map(request, geocoded_city_name):
+    svg_file_path = generate_map(geocoded_city_name)
+    city_name = geocoded_city_name  # Pass the city_name to the template if needed
+    return render(request, 'mapview.html', {'city_name': city_name, 'svg_file_path': svg_file_path})
