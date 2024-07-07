@@ -3,6 +3,7 @@ import osmnx as ox
 import os
 import re
 import matplotlib
+from django.conf import settings
 
 # Create your views here.
 
@@ -52,7 +53,12 @@ def generate_map(city_name):
     os.makedirs(output_folder, exist_ok=True)
 
     #Define the filepath
-    svg_file_path = os.path.join(output_folder, generate_filename(city_name) + ".svg")
+    svg_file_name = generate_filename(city_name) + ".svg"
+
+    # Define the filepath inside maps/static directory
+    static_dir = os.path.join(settings.BASE_DIR, 'citytransport', 'maps', 'static')
+    os.makedirs(static_dir, exist_ok=True)
+    svg_file_path = os.path.join(static_dir, svg_file_name)
 
     # Save the plot as an SVG file
     fig.savefig(svg_file_path, format='svg')
@@ -61,5 +67,6 @@ def generate_map(city_name):
 
 def view_map(request, geocoded_city_name):
     svg_file_path = generate_map(geocoded_city_name)
+    static_svg_url = os.path.join(settings.STATIC_URL, os.path.basename(svg_file_path))
     city_name = geocoded_city_name  # Pass the city_name to the template if needed
-    return render(request, 'mapview.html', {'city_name': city_name, 'svg_file_path': svg_file_path})
+    return render(request, 'mapview.html', {'city_name': city_name, 'svg_url': static_svg_url})
