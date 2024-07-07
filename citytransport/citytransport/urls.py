@@ -16,10 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from core import views as coreViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', coreViews.home, name='home'),
+    path('', include('core.urls', namespace='core')),
     path('maps/', include('maps.urls')),
 ]
