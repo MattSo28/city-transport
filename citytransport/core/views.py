@@ -10,10 +10,10 @@ def home(request):
     """
     form = CityForm()
     geocoded_city_name = None
-    
+
     if request == 'POST':
+        form = CityForm(request.POST)
         if form.is_valid():
-            form = CityForm(request.POST)
             input_city_text = form.cleaned_data['city_name']
             try:
                 geocoded_city_name = get_geocode_city_name(input_city_text)

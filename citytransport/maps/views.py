@@ -5,14 +5,10 @@ import re
 
 # Create your views here.
 
-#rename filename
-def generate_filename(geocode_result):
-    # Sanitize the geocode result to create a valid filename
-    sanitized_name = re.sub(r'[^a-zA-Z0-9]+', '_', geocode_result).lower()
-    return f"{sanitized_name}_street_network"
-
 def get_geocode_city_name(input_city_text):
-
+    """
+    Take in an input text and return the geocoded result
+    """
     city_name = None
 
     geocoded_city_data = ox.geocoder.geocode_to_gdf(input_city_text)
@@ -22,6 +18,11 @@ def get_geocode_city_name(input_city_text):
         return city_name
     else:
         return None
+
+def generate_filename(geocode_result):
+    # Sanitize the geocode result to create a valid filename
+    sanitized_name = re.sub(r'[^a-zA-Z0-9]+', '_', geocode_result).lower()
+    return f"{sanitized_name}_street_network"
     
 def generate_map(city_name):
     """
