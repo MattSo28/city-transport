@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Map View</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0-beta3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .container {
+            position: relative;
+            flex: 1;
+        }
+        .svg-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+        .svg-content {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .overlay-top-left {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+        .overlay-bottom-right {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            border-radius: 3px;
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+        }
+        .try-another-btn {
+            background-color: white;
+            border: 1px solid #007bff;
+            color: #007bff;
+        }
+        .try-another-btn:hover {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+    <!-- Pan and Zoom JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/svg-pan-zoom/3.6.1/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+    <div class="overlay-top-left">
+        <a href="{% url 'core:homepage' %}" class="btn try-another-btn">Try another city</a>
+    </div>
+    <div class="container">
+        <div id="svg-container" class="svg-container">
+            <div id="svg-holder" class="svg-content">
+                <img src="{{ svg_file_path }}" alt="City Map" id="city-map">
+            </div>
+        </div>
+        <div class="overlay-bottom-right">
+            <div>{{ city_name }}</div>
+            <div>© OpenStreetMap contributors</div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-beta3/js/bootstrap.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var panZoomInstance = svgPanZoom('#city-map', {
+                zoomEnabled: true,
+                controlIconsEnabled: false
+            });
+        });
+    </script>
+</body>
+</html>
