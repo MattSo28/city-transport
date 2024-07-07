@@ -5,3 +5,5 @@
 *.pyo
 # Ignore SQLite database
 citytransport/db.sqlite3
+# Ignore cache
+**/cache/
