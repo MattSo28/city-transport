@@ -52,6 +52,6 @@ def generate_map(city_name):
     # Save the plot as an SVG file
     fig.savefig(svg_file_path, format='svg')
 
-    return render(request, 'mapview.html', {'city_name': city_name})
+    return render('mapview.html', {'city_name': city_name})
 
 
