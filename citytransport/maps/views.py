@@ -56,7 +56,7 @@ def generate_map(city_name):
     svg_file_name = generate_filename(city_name) + ".svg"
 
     # Define the filepath inside maps/static directory
-    static_dir = os.path.join(settings.BASE_DIR, 'citytransport', 'maps', 'static')
+    static_dir = os.path.join(settings.BASE_DIR, 'maps', 'static')
     os.makedirs(static_dir, exist_ok=True)
     svg_file_path = os.path.join(static_dir, svg_file_name)
 
